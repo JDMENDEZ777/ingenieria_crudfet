@@ -1,0 +1,21 @@
+services:
+  mysql-db:
+    image: mysql:9.0
+    container_name: mysql-crudfet
+    environment:
+      MYSQL_DATABASE: producto_fet
+      MYSQL_ROOT_PASSWORD: Trujillo_1076904428
+    ports:
+      - "3306:3306"
+
+  app-crudfet:
+    build: .
+    container_name: spring-app
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mysql-db
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql-db:3306/producto_fet?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=Trujillo_1076904428
