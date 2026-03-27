@@ -14,11 +14,14 @@ import java.util.List;
 @Service
 public class ProductoServiceImpl implements ProductoService {
 
+        //Inyeccion De Dependencias
     private final ProductoRepository productoRepository;
 
     public ProductoServiceImpl(ProductoRepository productoRepository) {
         this.productoRepository = productoRepository;
     }
+
+        //polimorfismo
 
     @Override
     public ProductoResponseDto crear(ProductoRequestDto dto) {
@@ -29,6 +32,9 @@ public class ProductoServiceImpl implements ProductoService {
 
     @Override
     public List<ProductoResponseDto> listar() {
+
+        //PROGRAMACION FUNCIONAL -> PROGRAMACION REACTIVA
+
         return productoRepository.findAll()
                 .stream()
                 .map(ProductoMapper::toResponseDto)
